@@ -1,0 +1,90 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(https://www.itl.cat/pngfile/big/196-1961254_galaxy-wallpapers-for-ipad-group-pastel-pink-galaxy.jpg);
+    text-align: center
+}
+
+header{
+    color: white;
+    width: 100%;
+    text-align: center;    
+    font-size: 100px;
+}
+
+footer {
+    color: rgb(109, 19, 75);
+    font-family: sans-serif;
+    font-size: 20px;
+    width: 100%;
+    padding: 12px;
+}
+
+table, th, td {
+    border: 2px solid black;
+    padding: 12px;
+  }
+
+table {
+    margin-left: 20%;
+    margin-right: 20%;
+    font-weight: 100;
+    width: 60%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    color: black;
+    background-color: plum;
+}
+
+tr {
+    color: black;
+    background-color: pink;
+}
+
+div {
+    position: relative;
+}
+
+img {
+    display: block;
+    width: 30%;
+    left: 35%;
+    position: relative;
+}
+
+ol {
+    padding-left: 45%;
+    padding-right: 45%;
+}
+
+.pierwszy {
+    width: 25%;
+    background-color: palevioletred;
+    padding: 12px;
+}
+
+.drugi {
+    width: 25%;
+    background-color: plum;
+    padding: 12px;
+}
+
+.super-lot {
+    background-color: plum;
+    width: 200px;
+    z-index: 1;
+    position: absolute;
+    top : 35%;
+    left: 42%;
+}
+
+.miasto {
+    background-color: lightpink;
+    padding: 12px;
+    font-size: 50px;
+    width: 30%;
+    left: 35%;
+    position: relative;
+}
