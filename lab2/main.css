@@ -22,13 +22,10 @@ footer {
 table, th, td {
     border: 2px solid black;
     padding: 12px;
-  }
+}
 
 table {
-    margin-left: 20%;
-    margin-right: 20%;
     font-weight: 100;
-    width: 60%;
     border-collapse: collapse;
     text-align: left;
 }
@@ -52,16 +49,9 @@ ol {
     padding-right: 45%;
 }
 
-.pierwszy {
-    width: 25%;
-    background-color: palevioletred;
-    padding: 12px;
-}
-
-.drugi {
-    width: 25%;
-    background-color: plum;
-    padding: 12px;
+a:link, a:visited {
+    color: blue;
+    text-decoration: none;
 }
 
 .super-lot {
@@ -77,8 +67,8 @@ ol {
     background-color: lightpink;
     padding: 12px;
     font-size: 50px;
-    width: 30%;
-    left: 35%;
+    margin-left: 20%;
+    margin-right: 20%;
     position: relative;
 }
 
@@ -86,9 +76,90 @@ ol {
     font-weight: bold;
 }
 
-.obrazek {
+.obrazek, .obrazek-miasta {
     display: block;
     width: 30%;
     left: 35%;
     position: relative;
 }
+
+
+.menu-list {
+    list-style: none;
+    padding-left: 24px;
+    text-align: left;
+    font-family: "Andale Mono", serif;
+    text-transform: uppercase;
+}
+
+.little-delayed {
+    background-color: rgb(239, 237, 124);
+}
+
+.delayed {
+    background-color: rgb(239, 170, 83);
+}
+
+.cancelled {
+    background-color: rgba(255, 0, 24, 0.51);
+}
+
+.flex-page {
+    display: flex;
+    padding: 12px;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 450px) {
+    .flex-page {
+        display: flex;
+        padding: 12px;
+        flex-direction: column;
+    }
+
+    .pogoda {
+        display: none;
+    }
+
+    .obrazek-miasta {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 450px) and (max-width: 1600px) {
+    .flex-page>section {
+        flex: 1 0 30%;
+    }
+
+    .flex-page>section:first-child {
+        flex: 0 1 100%;
+    }
+
+}
+
+.pasazer:nth-child(odd) {
+    background-color: lightpink;
+}
+
+.popup{
+    background-color: hotpink;
+    width: 300px;
+    padding: 12px;
+    position: absolute;
+    left: 65%;
+    bottom: -55%;
+
+    visibility: hidden;
+}
+
+
+.pasazer:hover .popup{
+    visibility: visible;
+}
+
+
+
+
