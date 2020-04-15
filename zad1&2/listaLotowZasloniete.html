@@ -96,77 +96,103 @@
     </tr>
   </table>
 
-  <section class="opoznione-rezerwacja">
+  <section class="opoznione">
     <table>
       <tr>
         <th>nr lotu</th>
         <th>skąd</th>
         <th>dokąd</th>
         <th>kiedy</th>
-        <th>opóźnienie/odwołanie</th>
+        <th>opóźnienie/
+          odwołanie</th>
       </tr>
       <tr class="little-delayed">
         <td><a href="url">1</a></td>
         <td>Warszawa</td>
         <td>NYC</td>
-        <td>01.05.2020 - 12:37</td>
+        <td>01.05 12:37</td>
         <td>30 min </td>
       </tr>
       <tr class="cancelled">
         <td><a href="url">3</a></td>
         <td>Warszawa</td>
         <td>LAX</td>
-        <td>5.06.2021 - 21:36</td>
+        <td>5.06 21:36</td>
         <td>odwołany</td>
       </tr>
       <tr class="delayed">
         <td><a href="url">4</a></td>
         <td>Gdańsk</td>
         <td>Kraków</td>
-        <td>1.05.2020 - 12:36</td>
+        <td>1.05 - 12:36</td>
         <td>120 min</td>
       </tr>
     </table>
-    <section>
-      <h1>zrób rezerwacje</h1>
-
-      <label for="start">Wybierz skąd:</label>
-      <select id="start">
-        <option value="warszawa">Warszawa</option>
-        <option value="gdansk">Gdańsk</option>
-      </select><br>
-
-      <label for="destination">Wybierz dokąd:</label>
-      <select id="destination">
-        <option value="krakow">Kraków</option>
-        <option value="lodz">Łódź</option>
-        <option value="nyc">NYC</option>
-        <option value="lax">LAX</option>
-      </select><br>
-
-      <label for="name">Podaj imie:</label>
-      <input type="text" id="name" name="name"><br>
-
-      <label for="surname">Podaj nazwisko:</label>
-      <input type="text" id="surname" name="surname"><br>
-
-      <label for="date">Wybierz date:</label>
-      <input type="date" id="date" name="date"><br>
-
-      <button onclick="
-        document.getElementById('name').value = '';
-        document.getElementById('surname').value = '';
-        document.getElementById('date').value = ''"
-      >wyczysc</button>
-
-
-      <button>wyslij</button>
-    </section>
   </section>
 
-  <p class="rezerwacja">Rezerwacja udana</p>
+  <section class="rezerwacja">
+    <form action="*">
+      <h1>zrób rezerwacje</h1>
+      <table class="formularz">
+        <tr class="formularz-tr">
+          <td class="formularz-td">
+            <label for="start">Wybierz skąd</label>
+          </td>
+          <td class="formularz-td">
+            <select id="start">Wybierz skąd:
+              <option value="warszawa">Warszawa</option>
+              <option value="gdansk">Gdańsk</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="formularz-tr">
+          <td class="formularz-td">
+            <label for="destination">Wybierz dokąd</label>
+          </td>
+          <td class="formularz-td">
+            <select id="destination">
+              <option value="krakow">Kraków</option>
+              <option value="lodz">Łódź</option>
+              <option value="nyc">NYC</option>
+              <option value="lax">LAX</option>
+            </select>
+          </td>
+        </tr>
+        <tr class="formularz-tr">
+          <td class="formularz-td">
+            <label for="name">Podaj imię</label>
+          </td>
+          <td class="formularz-td">
+            <input type="text" id="name" name="name">
+          </td>
+        </tr>
+        <tr class="formularz-tr">
+          <td class="formularz-td">
+            <label for="surname">Podaj nazwisko</label>
+          </td>
+          <td class="formularz-td">
+            <input type="text" id="surname" name="surname">
+          </td>
+        </tr>
+        <tr class="formularz-tr">
+          <td class="formularz-td">
+            <label class="pole" for="date">Wybierz datę</label>
+          </td>
+          <td class="formularz-td">
+            <input type="date" id="date" name="date">
+          </td>
+        </tr>
+      </table>
+
+      <input type="submit" value="Wyślij">
+      <input type="reset" value="Wyczyść dane">
+    </form>
+  </section>
+
+  <p class="rezerwacja-popup">Rezerwacja udana</p>
 
   <footer class="my-footer">Marcin Abramowicz</footer>
 </section>
 </body>
 </html>
+
