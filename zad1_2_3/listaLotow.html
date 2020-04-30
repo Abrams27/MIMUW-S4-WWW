@@ -6,7 +6,15 @@
   <title>Linie lotnicze</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-  <script src="main.js"></script>
+  <script>
+    window.addEventListener('load', (event) => {
+      document.getElementById('name').value="Krzysztof";
+      document.getElementById('surname').value="Ciebiera";
+      wartosciPol.set("name", "Krzysztof");
+      wartosciPol.set("surname", "Ciebiera");
+      ukryjPrzyciskJesliBrakujePol();
+    });
+  </script>
 </head>
 <body>
 
@@ -96,7 +104,7 @@
     </tr>
   </table>
 
-  <section class="opoznione">
+  <section id="opoznione">
     <table>
       <tr>
         <th>nr lotu</th>
@@ -126,7 +134,7 @@
   </section>
 
   <section class="rezerwacja">
-    <form action="*">
+    <form action="*" id="rezerwacja-form">
       <h1>zrób rezerwacje</h1>
       <table class="formularz">
         <tr class="formularz-tr">
@@ -134,7 +142,8 @@
             <label for="start">Wybierz skąd</label>
           </td>
           <td class="formularz-td">
-            <select id="start">Wybierz skąd:
+            <select id="start" name="start">Wybierz skąd:
+              <option value="empty" hidden disabled selected value> -- wybierz skąd -- </option>
               <option value="warszawa">Warszawa</option>
               <option value="gdansk">Gdańsk</option>
             </select>
@@ -145,7 +154,8 @@
             <label for="destination">Wybierz dokąd</label>
           </td>
           <td class="formularz-td">
-            <select id="destination">
+            <select id="destination" name="destination">
+              <option value="empty" hidden disabled selected value> -- wybierz dokąd -- </option>
               <option value="krakow">Kraków</option>
               <option value="lodz">Łódź</option>
               <option value="nyc">NYC</option>
@@ -179,13 +189,16 @@
         </tr>
       </table>
 
-      <input class="guzik-wyslij" type="submit" value="Wyślij">
+      <input id="guzik-wyslij" class="guzik-wyslij" type="submit" value="Wyślij">
       <input class="guzik-reset" type="reset" value="Wyczyść dane">
     </form>
   </section>
 
+  <p id="rezerwacja-popup">Rezerwacja udana</p>
 
   <footer class="my-footer">Marcin Abramowicz</footer>
 </section>
+
+<script src="mainListaLotow.js"></script>
 </body>
 </html>

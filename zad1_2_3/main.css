@@ -134,7 +134,7 @@ a:link, a:visited {
   grid-template-areas:
       "my-header my-header my-header"
       "menu loty opoznione"
-      ". . rezerwacja"
+      ". loty rezerwacja"
       "my-footer my-footer my-footer";
 }
 
@@ -211,7 +211,7 @@ a:link, a:visited {
   visibility: visible;
 }
 
-.rezerwacja-popup {
+#rezerwacja-popup {
   font-size: 70px;
   color: white;
   background-color: fuchsia;
@@ -224,6 +224,8 @@ a:link, a:visited {
   top: 0;
   left: 0;
   margin:0;
+
+  visibility: hidden;
 }
 
 .formularz, .formularz-tr, .formularz-td {
