@@ -1,114 +1,88 @@
+import {fibonacci} from "./fibonacci.js";
+
 'use strict';
 
-let opoznienie = document.getElementById('opoznione');
+let opoznienie = <HTMLElement>document.getElementById('opoznione');
+
+let wejsiceStart = <HTMLInputElement>document.getElementById("start");
+let wejscieKoniec = <HTMLInputElement>document.getElementById("destination");
+let wejscieImie = <HTMLInputElement>document.getElementById("name");
+let wejscieNazwisko = <HTMLInputElement>document.getElementById("surname");
+let wejscieData = <HTMLInputElement>document.getElementById("date");
+
+let potwierdzenieRejestracji =  <HTMLElement>document.getElementById('rezerwacja-popup');
+
+let form = <HTMLElement>document.getElementById('rezerwacja-form');
+let przycisk = <HTMLElement>document.getElementById("guzik-wyslij");
+
 opoznienie.addEventListener('click', pokoloruj);
 
-
-const wymaganaLiczbaPol = 5;
-let wartosciPol = new Map();
-let rodzajWejsciaDlaNazwyPola = new Map();
-
-let potwierdzenieRejestracji = document.getElementById('rezerwacja-popup');
-const form = document.getElementById('rezerwacja-form');
 form.addEventListener('input', rozwiklajWejscie);
 form.addEventListener('submit', rozwiklajPotwierdzenie);
 form.addEventListener('reset', rozwiklajReset);
 
-let przycisk = document.getElementById("guzik-wyslij");
+ukryjPrzyciskJesliBrakujePol();
 
-ustawRodzajeWejsciaDlaNazwPol();
-
-function ustawRodzajeWejsciaDlaNazwPol() {
-  rodzajWejsciaDlaNazwyPola.set("start", "select");
-  rodzajWejsciaDlaNazwyPola.set("destination", "select");
-  rodzajWejsciaDlaNazwyPola.set("name", "text");
-  rodzajWejsciaDlaNazwyPola.set("surname", "text");
-  rodzajWejsciaDlaNazwyPola.set("date", "date");
-}
-
-function rozwiklajPotwierdzenie(event): void {
-  potwierdzenieRejestracji.textContent = `
-    Skąd: ${wartosciPol.get("start")}
-    Dokąd: ${wartosciPol.get("destination")}
-    Imie: ${wartosciPol.get("name")}
-    Nazwisko: ${wartosciPol.get("surname")}
-    Data: ${wartosciPol.get("date")}`;
-
-  potwierdzenieRejestracji.style.visibility = "visible";
-
-  console.log(wartosciPol);
-  event.preventDefault();
-}
-
-function rozwiklajReset(event): void {
-  wartosciPol.clear();
+function rozwiklajReset(): void {
+  wejscieData.value="";
   ukryjPrzyciskJesliBrakujePol();
 }
 
-function rozwiklajWejscie(event): void {
-  let nazwaCelu = event.target.name;
-  let wartoscCelu = event.target.value;
-  let rodzajWejsciaCelu = rodzajWejsciaDlaNazwyPola.get(nazwaCelu);
-
-  switch (rodzajWejsciaCelu) {
-    case "text":
-      rozwiklajWejscieZPolemTesktowym(nazwaCelu, wartoscCelu);
-      break;
-    case "date":
-      rozwiklajWejscieZData(nazwaCelu, wartoscCelu);
-      break;
-    case "select":
-      rozwiklajWejscieZPolemDoWyboru(nazwaCelu, wartoscCelu);
-      break;
-    default:
-      console.log("Cos nie tak : (");
-      break;
-  }
-
+function rozwiklajWejscie(): void {
   ukryjPrzyciskJesliBrakujePol();
 }
-
-function rozwiklajWejscieZPolemTesktowym(nazwa: string, wartosc: string): void {
-  if (wartosc.trim().length > 0) {
-    wartosciPol.set(nazwa, wartosc);
-  } else {
-    wartosciPol.delete(nazwa);
-  }
-}
-
-function rozwiklajWejscieZPolemDoWyboru(nazwa: string, wartosc: string): void {
-  if (wartosc != "empty") {
-    wartosciPol.set(nazwa, wartosc);
-  } else {
-    wartosciPol.delete(nazwa);
-  }
-}
-
-function rozwiklajWejscieZData(nazwa: string, wartosc: string): void {
-  let wpisanaData = new Date(Date.parse(wartosc));
-  let dzisiejszaData = new Date (Date.now());
-
-  if (wpisanaData >= dzisiejszaData) {
-    wartosciPol.set(nazwa, wartosc);
-  } else {
-    wartosciPol.delete(nazwa);
-  }
-}
-
 
 function ukryjPrzyciskJesliBrakujePol() {
-  if (wartosciPol.size == wymaganaLiczbaPol) {
+  if (czyWszystkiePolaSaWypelnionePoprawnie()) {
     przycisk.removeAttribute("disabled");
   } else {
     przycisk.setAttribute("disabled", "true");
   }
 }
 
+function czyWszystkiePolaSaWypelnionePoprawnie(): boolean {
+  return czyPoleZwyboremJestPoprawne(wejsiceStart)
+    && czyPoleZwyboremJestPoprawne(wejscieKoniec)
+    && czyPoleTeskstoweJestNiepuste(wejscieImie)
+    && czyPoleTeskstoweJestNiepuste(wejscieNazwisko)
+    && czyPoleZDataJestPoprawne(wejscieData);
+}
+
+function czyPoleTeskstoweJestNiepuste(pole: HTMLInputElement): boolean {
+  return pole.value.trim().length > 0
+}
+
+function czyPoleZwyboremJestPoprawne(pole: HTMLInputElement): boolean {
+  return pole.value != "empty"
+}
+
+function czyPoleZDataJestPoprawne(pole: HTMLInputElement): boolean {
+  let wpisanaData = new Date(Date.parse(pole.value));
+  let dzisiejszaData = new Date (Date.now() - 86400000);
+
+  return wpisanaData >= dzisiejszaData
+}
+
+function rozwiklajPotwierdzenie(event: any): void {
+  potwierdzenieRejestracji.textContent = `
+    Skąd: ${wejsiceStart.value}
+    Dokąd: ${wejscieKoniec.value}
+    Imie: ${wejscieImie.value}
+    Nazwisko: ${wejscieNazwisko.value}
+    Data: ${wejscieData.value}`;
+
+  potwierdzenieRejestracji.style.visibility = "visible";
+
+  event.preventDefault();
+}
+
+
 let licznikKlikniec = 0;
 function pokoloruj(mouseEvent: MouseEvent) {
   licznikKlikniec++;
   console.log(fibonacci(10 * licznikKlikniec));
   let cel = mouseEvent.target;
+  // @ts-ignore
   let element = this as HTMLElement;
 
 
@@ -116,6 +90,7 @@ function pokoloruj(mouseEvent: MouseEvent) {
   .getComputedStyle(element)
   .getPropertyValue('background-color');
 
+  // @ts-ignore
   let [_,...koloryJakoTekst] =
       /rgb[a]?\((\d+),[^0-9]*(\d+),[^0-9]*(\d+)[,]?[^0-9]*(\d*)\)/
       .exec(aktualnyKolor);
@@ -126,12 +101,4 @@ function pokoloruj(mouseEvent: MouseEvent) {
   }
 
   element.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
-}
-
-function fibonacci(n: number): number {
-  if (n <= 1) {
-    return n;
-  }
-
-  return fibonacci(n - 1) + fibonacci(n - 2);
 }

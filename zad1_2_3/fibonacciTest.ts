@@ -31,4 +31,3 @@ describe("Fibonacci", () => {
     expect(fibonacci(18)).to.equal(2584);
   });
 });
-

@@ -96,7 +96,7 @@ function poczekaj(czasCzekaniaWMilisekundach: number) {
 }
 
 function wyswietlZdjecieAutoraOstatniegoCommitu() {
-  const url = "https://api.github.com/repos/Microsof/TypeScript/commits";
+  const url = "https://api.github.com/repos/Microsoft/TypeScript/commits";
 
   fetch(url)
   .then(o => o.json())
