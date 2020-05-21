@@ -1,0 +1,15 @@
+html
+    head
+    style
+        include style.css
+    body
+        h1= "Historia cen mema"
+        table
+            each price in meme.getPriceHistory()
+                tr
+                    td= price
+
+        form(method='POST' action='/meme/' + meme.getId())
+            label= "Podaj cene"
+            input(type='number', placeholder='nowa cena' name='price')
+            input(type='submit' value='potwierdź')
