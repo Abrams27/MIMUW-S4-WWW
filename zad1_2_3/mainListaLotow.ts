@@ -1,19 +1,17 @@
 import {fibonacci} from "./fibonacci.js";
 
-'use strict';
+const opoznienie = document.getElementById('opoznione') as HTMLElement;
 
-let opoznienie = <HTMLElement>document.getElementById('opoznione');
+const wejsiceStart = document.getElementById("start") as HTMLInputElement;
+const wejscieKoniec = document.getElementById("destination") as HTMLInputElement;
+const wejscieImie = document.getElementById("name") as HTMLInputElement;
+const wejscieNazwisko = document.getElementById("surname") as HTMLInputElement;
+const wejscieData = document.getElementById("date") as HTMLInputElement;
 
-let wejsiceStart = <HTMLInputElement>document.getElementById("start");
-let wejscieKoniec = <HTMLInputElement>document.getElementById("destination");
-let wejscieImie = <HTMLInputElement>document.getElementById("name");
-let wejscieNazwisko = <HTMLInputElement>document.getElementById("surname");
-let wejscieData = <HTMLInputElement>document.getElementById("date");
+const potwierdzenieRejestracji =  document.getElementById('rezerwacja-popup') as HTMLElement;
 
-let potwierdzenieRejestracji =  <HTMLElement>document.getElementById('rezerwacja-popup');
-
-let form = <HTMLElement>document.getElementById('rezerwacja-form');
-let przycisk = <HTMLElement>document.getElementById("guzik-wyslij");
+const form = document.getElementById('rezerwacja-form') as HTMLElement;
+const przycisk = document.getElementById("guzik-wyslij") as HTMLElement;
 
 opoznienie.addEventListener('click', pokoloruj);
 
@@ -53,14 +51,14 @@ function czyPoleTeskstoweJestNiepuste(pole: HTMLInputElement): boolean {
 }
 
 function czyPoleZwyboremJestPoprawne(pole: HTMLInputElement): boolean {
-  return pole.value != "empty"
+  return pole.value !== "empty"
 }
 
 function czyPoleZDataJestPoprawne(pole: HTMLInputElement): boolean {
-  let wpisanaData = new Date(Date.parse(pole.value));
-  let dzisiejszaData = new Date (Date.now() - 86400000);
+  const wpisanaData = new Date(Date.parse(pole.value));
+  const dzisiejszaData = new Date (Date.now() - 86400000);
 
-  return wpisanaData >= dzisiejszaData
+  return wpisanaData > dzisiejszaData
 }
 
 function rozwiklajPotwierdzenie(event: any): void {
@@ -81,23 +79,23 @@ let licznikKlikniec = 0;
 function pokoloruj(mouseEvent: MouseEvent) {
   licznikKlikniec++;
   console.log(fibonacci(10 * licznikKlikniec));
-  let cel = mouseEvent.target;
+  const cel = mouseEvent.target;
   // @ts-ignore
-  let element = this as HTMLElement;
+  const element = this as HTMLElement;
 
 
-  let aktualnyKolor = window
+  const aktualnyKolor = window
   .getComputedStyle(element)
   .getPropertyValue('background-color');
 
   // @ts-ignore
-  let [_,...koloryJakoTekst] =
+  const [_,...koloryJakoTekst] =
       /rgb[a]?\((\d+),[^0-9]*(\d+),[^0-9]*(\d+)[,]?[^0-9]*(\d*)\)/
       .exec(aktualnyKolor);
 
-  let colors: number[] = [];
+  const colors: number[] = [];
   for(let i = 0; i < 3; i++) {
-    colors[i] = (parseInt(koloryJakoTekst[i]) + 0x20) % 256;
+    colors[i] = (parseInt(koloryJakoTekst[i], 10) + 0x20) % 256;
   }
 
   element.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;

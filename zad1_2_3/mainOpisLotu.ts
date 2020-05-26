@@ -13,19 +13,19 @@ utworzNowyElementNaKoncuZTeskstem("zdjęcie autora najnowszego commitu z repozyt
 wyswietlZdjecieAutoraOstatniegoCommitu();
 
 function znajdzPasazeraZNajwiekszymId(): Element {
-  let ol = document.querySelector('ol');
-  let pasazerowie = ol.getElementsByClassName('pasazer');
-  let maxIndeksPasazera = znajdzIndeksPasazeraZNajwiekszymId(pasazerowie);
+  const ol = document.querySelector('ol');
+  const pasazerowie = ol.getElementsByClassName('pasazer');
+  const maxIndeksPasazera = znajdzIndeksPasazeraZNajwiekszymId(pasazerowie);
 
   return pasazerowie[maxIndeksPasazera];
 }
 
 function znajdzIndeksPasazeraZNajwiekszymId(pasazerowie) {
-  let maxIdPasazera: String = "";
+  let maxIdPasazera: string = "";
   let maxIndeksPasazera = 0;
 
   for (let i = 0; i < pasazerowie.length; i++) {
-    let idPasazera = pasazerowie[i].getAttribute('data-identyfikator-pasazera');
+    const idPasazera = pasazerowie[i].getAttribute('data-identyfikator-pasazera');
 
     if (idPasazera > maxIdPasazera) {
       maxIdPasazera = idPasazera;
@@ -36,7 +36,7 @@ function znajdzIndeksPasazeraZNajwiekszymId(pasazerowie) {
   return maxIndeksPasazera;
 }
 
-function dajImieINazwiskoPasazera(pasazerZNajwiekszymId): String {
+function dajImieINazwiskoPasazera(pasazerZNajwiekszymId): string {
   const imieINazwiskoRegex = "(.*) (.*)";
 
   return pasazerZNajwiekszymId
@@ -106,7 +106,7 @@ function wyswietlZdjecieAutoraOstatniegoCommitu() {
 }
 
 function utworzNowyElementNaKoncuZTeskstem(tekst: string) {
-  let nowyElement = document.createElement('div');
+  const nowyElement = document.createElement('div');
   nowyElement.textContent = tekst;
   document.body.appendChild(nowyElement);
 }
@@ -114,7 +114,7 @@ function utworzNowyElementNaKoncuZTeskstem(tekst: string) {
 function utworzNowyElementNaKoncuZObrazkiem(url: string) {
   console.log(url);
 
-  let nowyElement = document.createElement('img');
+  const nowyElement = document.createElement('img');
   nowyElement.src = url;
   document.body.appendChild(nowyElement);
 }
