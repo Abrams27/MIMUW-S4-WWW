@@ -39,13 +39,19 @@ export class Meme {
   private priceHistory: PriceHistory;
   private readonly id: number;
 
-  public constructor(name: string, url: string, price: number) {
+  public constructor(id: number, name: string, url: string, priceHistory: number[], price?: number) {
     this.name = name;
     this.url = url;
     this.priceHistory = new PriceHistory();
+    this.id = id;
 
-    this.priceHistory.addLatestPrice(price);
-    this.id = IdGenerator.generateId();
+    for (let previousPrice of priceHistory) {
+      this.priceHistory.addLatestPrice(previousPrice);
+    }
+
+    if (price != undefined) {
+      this.priceHistory.addLatestPrice(price);
+    }
   }
 
   public addLatestPrice(latestPrice: number) {

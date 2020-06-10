@@ -12,4 +12,5 @@ html
         form(method='POST' action='/meme/' + meme.getId())
             label= "Podaj cene"
             input(type='number', placeholder='nowa cena' name='price')
+            input(type="hidden", name="_csrf", value=csrfToken)
             input(type='submit' value='potwierdź')
