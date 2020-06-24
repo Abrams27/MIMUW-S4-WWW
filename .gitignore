@@ -2,3 +2,6 @@
 .idea/
 *.js
 node_modules/
+sessions
+.memes
+*.js.map

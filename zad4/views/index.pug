@@ -1,8 +1,8 @@
 html
     head
         title= title
-    style
-        include style.css
+        style
+            include style.css
     body
         h1= message
         a(href="logout") logout
@@ -12,5 +12,5 @@ html
         ul
             each meme in memes
                 li
-                   a(href="meme/" + meme.id) #{meme.name}
-                   img(src=meme.url).small-image
+                    a(href="meme/" + meme.getId()) #{meme.getName()}
+                    img(src=meme.getUrl()).small-image

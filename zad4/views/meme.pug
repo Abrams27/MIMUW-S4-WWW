@@ -1,16 +1,14 @@
-html
-    head
-    style
-        include style.css
-    body
-        h1= "Historia cen mema"
-        table
-            each price in meme.getPriceHistory()
-                tr
-                    td= price
+extends layout
 
-        form(method='POST' action='/meme/' + meme.getId())
-            label= "Podaj cene"
-            input(type='number', placeholder='nowa cena' name='price')
-            input(type="hidden", name="_csrf", value=csrfToken)
-            input(type='submit' value='potwierdź')
+block content
+    h1= "Historia cen mema"
+    table
+        each price in meme.getPriceHistory()
+            tr
+                td= price.getPrice()
+
+    form(method='POST' action='/meme/' + meme.getId())
+        label= "Podaj cene"
+        input(type='number', placeholder='nowa cena' name='price')
+        input(type="hidden", name="_csrf", value=csrfToken)
+        input(type='submit' value='potwierdź')
